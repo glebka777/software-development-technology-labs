@@ -1,4 +1,4 @@
-
+package ru.mirea.trpo.labs.lab3.test
 import org.junit.Assert.*
 import org.junit.Test
 import ru.mirea.trpo.labs.lab3.Rearrangement

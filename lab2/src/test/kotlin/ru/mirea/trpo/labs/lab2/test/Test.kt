@@ -1,10 +1,11 @@
-package ru.mirea.trpo.labs.lab2
+package ru.mirea.trpo.labs.lab2.test
 
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
+import ru.mirea.trpo.labs.lab2.*
 import java.util.*
 
 const val TEST_TEXT_1 = "/text/sample_1.txt"
@@ -67,7 +68,7 @@ class Test(val algorithm: (List<Word>, Int) -> List<String>) {
     private fun print(time: Long, algorithm: (List<Word>, Int) -> List<String>, size: Int) {
         val formattedAlg = "%9s".format(formatAlgName(algorithm.toString()))
         val formattedAllWords = "%-3s %3s".format("all:", "$size")
-        val formattedChosenWords = "%-3s %1s".format("chosen:", "$WORDS_QUANTITY")
+        val formattedChosenWords = "%-3s %1s".format("chosen:", "${WORDS_QUANTITY}")
         val formattedTime = "%9s".format("~$time ns")
         println("[$formattedAlg] [$formattedAllWords] [$formattedChosenWords] $formattedTime")
     }

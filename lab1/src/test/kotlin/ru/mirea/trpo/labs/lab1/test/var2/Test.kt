@@ -1,8 +1,9 @@
-package ru.mirea.trpo.labs.lab1.var2
+package ru.mirea.trpo.labs.lab1.test.var2
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import ru.mirea.trpo.labs.lab1.generateOdd
+import ru.mirea.trpo.labs.lab1.var2.findSingle
 
 const val MAX_SIZE = 999999
 const val MIN_SIZE = 1

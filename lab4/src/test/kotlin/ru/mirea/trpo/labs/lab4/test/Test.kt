@@ -1,4 +1,4 @@
-
+package ru.mirea.trpo.labs.lab4.test
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

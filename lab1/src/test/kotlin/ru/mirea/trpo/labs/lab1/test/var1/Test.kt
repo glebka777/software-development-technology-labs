@@ -1,4 +1,4 @@
-package ru.mirea.trpo.labs.lab1.var1
+package ru.mirea.trpo.labs.lab1.test.var1
 
 import org.junit.Assert.assertArrayEquals
 import org.junit.Test
@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import ru.mirea.trpo.labs.lab1.generate
 import ru.mirea.trpo.labs.lab1.getRandomInt
+import ru.mirea.trpo.labs.lab1.var1.*
 import java.util.*
 
 const val MAX_SIZE = 100
