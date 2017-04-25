@@ -26,21 +26,6 @@ fun getMostFrequentByQuickSelectPartitionSort(words: List<Word>, quantity: Int =
         = words.quickSelectPartitionSort(quantity).map(Word::stringValue)
 
 
-fun getMostFrequentByMedianOfMediansSort(words: List<Word>, quantity: Int = words.size)
-        = words.medianOfMediansSort(quantity).map(Word::stringValue)
-
-
-data class Word(val stringValue: String, val frequency: Int) : Comparable<Word> {
-    override operator fun compareTo(other: Word): Int {
-        return this.frequency - other.frequency
-    }
-
-    override fun toString(): String {
-        return "('$stringValue' : $frequency)"
-    }
-
-}
-
 fun main(args: Array<String>) {
     println("Enter text:")
     val text = readText()
