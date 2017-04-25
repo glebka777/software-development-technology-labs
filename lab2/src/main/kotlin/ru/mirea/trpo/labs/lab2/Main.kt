@@ -33,7 +33,9 @@ data class Word(val stringValue: String, val frequency: Int) : Comparable<Word> 
 }
 
 fun main(args: Array<String>) {
+    println("Enter text:")
     val text = readText()
+    println("Enter number of words:")
     val quantity = readInt()
     val words = countWords(text)
     val mostFrequent = getMostFrequentByPartialSelectionSort(words, quantity)

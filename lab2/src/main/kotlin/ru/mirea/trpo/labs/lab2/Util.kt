@@ -1,26 +1,19 @@
+@file:Suppress("unused")
+
 package ru.mirea.trpo.labs.lab2
 
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.util.*
-import kotlin.collections.ArrayList
 
 fun readFile(path: String): String {
     val file = File(path)
     return file.readText()
 }
 
-fun readFile(file: File): String {
-    return file.readText()
-}
-
-fun compareWordFrequencies(w1: Word, w2: Word): Int {
-    return w1.compareTo(w2)
-}
-
 fun readText(): String {
-    println("Type \"exit\" in newline to exit.")
+    println("(Type \"exit\" in newline to exit)")
     BufferedReader(InputStreamReader(System.`in`)).let {
         var input: String? = ""
         var text = ""
@@ -45,27 +38,6 @@ fun readInt(): Int {
     return 0
 }
 
-fun List<Word>.bucketSort(quantity: Int): List<Word> {
-    val minFrequency = minBy(Word::frequency)!!.frequency
-    val maxFrequency = maxBy(Word::frequency)!!.frequency
-    val buckets = Array(maxFrequency - minFrequency + 1) { ArrayList<Word>() }
-    forEach {
-        buckets[it.frequency - minFrequency].add(it)
-    }
-    val result = ArrayList<Word>(this.size)
-    (buckets.size - 1 downTo 0).forEach {
-        val bucket = buckets[it]
-        if (bucket.size > 0) {
-            bucket.forEach {
-                result.add(it)
-                if (result.size == quantity)
-                    return result
-            }
-        }
-    }
-    return result
-}
-
 fun <E : Comparable<E>> List<E>.getMostFrequent(quantity: Int): List<E> {
     val queue = PriorityQueue<E>()
     forEach {
@@ -88,6 +60,11 @@ fun <E : Comparable<E>> List<E>.quickSelectPartitionIterativeSort(quantity: Int)
 
 fun <E : Comparable<E>> List<E>.quickSelectPartitionRecursiveSort(quantity: Int): List<E> {
     selectRecursive(0, size - 1, quantity - 1)
+    return take(quantity)
+}
+
+fun <E : Comparable<E>> List<E>.selectionSort(quantity: Int): List<E> {
+    select(quantity)
     return take(quantity)
 }
 
@@ -137,11 +114,6 @@ private fun <E : Comparable<E>> List<E>.partition(left: Int, right: Int, pivot: 
     return store
 }
 
-fun <E : Comparable<E>> List<E>.selectionSort(quantity: Int): List<E> {
-    select(quantity)
-    return take(quantity)
-}
-
 private fun <E : Comparable<E>> List<E>.select(quantity: Int): E {
     (0 until quantity).forEach { i ->
         var maxIndex: Int
@@ -159,6 +131,32 @@ private fun <E : Comparable<E>> List<E>.select(quantity: Int): E {
 
 private fun List<*>.swap(i1: Int, i2: Int) {
     Collections.swap(this, i1, i2)
+}
+
+
+
+/**Unused sorts*/
+/*******************************************************/
+
+fun List<Word>.bucketSort(quantity: Int): List<Word> {
+    val minFrequency = minBy(Word::frequency)!!.frequency
+    val maxFrequency = maxBy(Word::frequency)!!.frequency
+    val buckets = Array(maxFrequency - minFrequency + 1) { ArrayList<Word>() }
+    forEach {
+        buckets[it.frequency - minFrequency].add(it)
+    }
+    val result = ArrayList<Word>(this.size)
+    (buckets.size - 1 downTo 0).forEach {
+        val bucket = buckets[it]
+        if (bucket.size > 0) {
+            bucket.forEach {
+                result.add(it)
+                if (result.size == quantity)
+                    return result
+            }
+        }
+    }
+    return result
 }
 
 fun List<Word>.radixSort(): List<Word> {
