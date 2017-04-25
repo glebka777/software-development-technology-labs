@@ -138,11 +138,11 @@ private fun List<Word>.partition(left: Int, right: Int, pivot: Int): Int {
 }
 
 fun List<Word>.selectionSort(quantity: Int): List<Word> {
-    selectFirstMax(quantity)
+    select(quantity)
     return take(quantity)
 }
 
-private fun List<Word>.selectFirstMax(quantity: Int): Word {
+private fun List<Word>.select(quantity: Int): Word {
     (0 until quantity).forEach { i ->
         var maxIndex: Int
         var maxValue = this[i]
