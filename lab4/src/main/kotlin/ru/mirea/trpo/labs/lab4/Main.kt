@@ -1,8 +1,12 @@
 package ru.mirea.trpo.labs.lab4
 
 fun findCommonChars(text: String): CharArray {
-    val strings = text.split(Regex("\\n")).filter { !it.isNullOrBlank() }
-    val chars = strings.map { it.toCharArray().toSet() }.reduce { acc, next -> acc.intersect(next) }
+    val strings = text
+            .split(Regex("\\n"))
+            .filter { !it.isNullOrBlank() }
+    val chars = strings
+            .map { it.toCharArray().toSet() }
+            .reduce { acc, next -> acc.intersect(next) }
     return chars.toCharArray()
 }
 
