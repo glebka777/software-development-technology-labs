@@ -27,7 +27,8 @@ class Test(val algorithm: (List<Word>, Int) -> List<String>) {
                 = listOf(
                 ::getMostFrequentByQueue,
                 ::getMostFrequentByJavaSort,
-                ::getMostFrequentBySelection
+                ::getMostFrequentByPartialSelectionSort,
+                ::getMostFrequentByQuickSelectPartitionSort
         )
     }
 
@@ -66,9 +67,9 @@ class Test(val algorithm: (List<Word>, Int) -> List<String>) {
     }
 
     private fun print(time: Long, algorithm: (List<Word>, Int) -> List<String>, size: Int) {
-        val formattedAlg = "%9s".format(formatAlgName(algorithm.toString()))
-        val formattedAllWords = "%-3s %3s".format("all:", "$size")
-        val formattedChosenWords = "%-3s %1s".format("chosen:", "${WORDS_QUANTITY}")
+        val formattedAlg = "%25s".format(formatAlgName(algorithm.toString()))
+        val formattedAllWords = "%-3s %3s".format("N:", "$size")
+        val formattedChosenWords = "%-3s %1s".format("K:", "${WORDS_QUANTITY}")
         val formattedTime = "%9s".format("~$time ns")
         println("[$formattedAlg] [$formattedAllWords] [$formattedChosenWords] $formattedTime")
     }

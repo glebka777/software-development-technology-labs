@@ -81,9 +81,65 @@ fun List<Word>.getMostFrequent(quantity: Int): List<Word> {
     return queue.toList()
 }
 
-fun List<Word>.quickSelect(quantity: Int): List<Word> {
-    val firstMaxFrequency = selectFirstMax(quantity).frequency
-    return filter { it.frequency >= firstMaxFrequency }
+fun List<Word>.quickSelectPartitionIterativeSort(quantity: Int): List<Word> {
+    selectIterative(quantity - 1)
+    return take(quantity)
+}
+
+fun List<Word>.quickSelectPartitionRecursiveSort(quantity: Int): List<Word> {
+    selectRecursive(0, size - 1, quantity - 1)
+    return take(quantity)
+}
+
+private fun List<Word>.selectIterative(quantity: Int): Word {
+    var left = 0
+    var right = size - 1
+    val random = Random()
+    if (left == right)
+        return this[left]
+    while (true) {
+        var pivot = random.nextInt(right - left + 1) + left
+        pivot = partition(left, right, pivot)
+        if (quantity == pivot)
+            return this[quantity]
+        else if (quantity < pivot)
+            right = pivot - 1
+        else
+            left = pivot + 1
+    }
+}
+
+private fun List<Word>.selectRecursive(left: Int, right: Int, quantity: Int): Word {
+    val random = Random()
+    if (left == right)
+        return this[left]
+    var pivot = random.nextInt(right - left + 1) + left
+    pivot = partition(left, right, pivot)
+    if (quantity == pivot)
+        return this[quantity]
+    else if (quantity < pivot)
+        return selectRecursive(left, pivot - 1, quantity)
+    else
+        return selectRecursive(pivot + 1, right, quantity)
+}
+
+private fun List<Word>.partition(left: Int, right: Int, pivot: Int): Int {
+    val pivotElem = this[pivot]
+    swap(pivot, right)
+    var store = left
+    (left until right).forEach {
+        if (this[it] > pivotElem) {
+            swap(it, store)
+            store++
+        }
+    }
+    swap(right, store)
+    return store
+}
+
+fun List<Word>.selectionSort(quantity: Int): List<Word> {
+    selectFirstMax(quantity)
+    return take(quantity)
 }
 
 private fun List<Word>.selectFirstMax(quantity: Int): Word {

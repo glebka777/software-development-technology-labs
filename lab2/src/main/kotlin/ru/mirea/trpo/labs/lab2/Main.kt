@@ -30,9 +30,11 @@ fun getMostFrequentByQueue(words: List<Word>, quantity: Int = words.size)
         = words.getMostFrequent(quantity).map(Word::stringValue)
 
 
-fun getMostFrequentBySelection(words: List<Word>, quantity: Int = words.size)
-        = words.quickSelect(quantity).map(Word::stringValue)
+fun getMostFrequentByPartialSelectionSort(words: List<Word>, quantity: Int = words.size)
+        = words.selectionSort(quantity).map(Word::stringValue)
 
+fun getMostFrequentByQuickSelectPartitionSort(words: List<Word>, quantity: Int = words.size)
+        = words.quickSelectPartitionIterativeSort(quantity).map(Word::stringValue)
 
 data class Word(val stringValue: String, val frequency: Int): Comparable<Word> {
     override operator fun compareTo(other: Word): Int {
@@ -44,7 +46,7 @@ fun main(args: Array<String>) {
     val text = readText()
     val quantity = readInt()
     val words = countWords(text)
-    val mostFrequent = getMostFrequentBySelection(words, quantity)
+    val mostFrequent = getMostFrequentByPartialSelectionSort(words, quantity)
     println()
     println(mostFrequent)
 }
