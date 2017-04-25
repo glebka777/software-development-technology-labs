@@ -66,11 +66,11 @@ fun List<Word>.bucketSort(quantity: Int): List<Word> {
     return result
 }
 
-fun List<Word>.getMostFrequent(quantity: Int): List<Word> {
-    val queue = PriorityQueue<Word>()
+fun <E : Comparable<E>> List<E>.getMostFrequent(quantity: Int): List<E> {
+    val queue = PriorityQueue<E>()
     forEach {
         if (queue.size >= quantity) {
-            if (it.frequency > queue.peek().frequency) {
+            if (it > queue.peek()) {
                 queue.poll()
                 queue.offer(it)
             }
@@ -81,17 +81,17 @@ fun List<Word>.getMostFrequent(quantity: Int): List<Word> {
     return queue.toList()
 }
 
-fun List<Word>.quickSelectPartitionIterativeSort(quantity: Int): List<Word> {
+fun <E : Comparable<E>> List<E>.quickSelectPartitionIterativeSort(quantity: Int): List<E> {
     selectIterative(quantity - 1)
     return take(quantity)
 }
 
-fun List<Word>.quickSelectPartitionRecursiveSort(quantity: Int): List<Word> {
+fun <E : Comparable<E>> List<E>.quickSelectPartitionRecursiveSort(quantity: Int): List<E> {
     selectRecursive(0, size - 1, quantity - 1)
     return take(quantity)
 }
 
-private fun List<Word>.selectIterative(quantity: Int): Word {
+private fun <E : Comparable<E>> List<E>.selectIterative(quantity: Int): E {
     var left = 0
     var right = size - 1
     val random = Random()
@@ -109,7 +109,7 @@ private fun List<Word>.selectIterative(quantity: Int): Word {
     }
 }
 
-private fun List<Word>.selectRecursive(left: Int, right: Int, quantity: Int): Word {
+private fun <E : Comparable<E>> List<E>.selectRecursive(left: Int, right: Int, quantity: Int): E {
     val random = Random()
     if (left == right)
         return this[left]
@@ -123,7 +123,7 @@ private fun List<Word>.selectRecursive(left: Int, right: Int, quantity: Int): Wo
         return selectRecursive(pivot + 1, right, quantity)
 }
 
-private fun List<Word>.partition(left: Int, right: Int, pivot: Int): Int {
+private fun <E : Comparable<E>> List<E>.partition(left: Int, right: Int, pivot: Int): Int {
     val pivotElem = this[pivot]
     swap(pivot, right)
     var store = left
@@ -137,12 +137,12 @@ private fun List<Word>.partition(left: Int, right: Int, pivot: Int): Int {
     return store
 }
 
-fun List<Word>.selectionSort(quantity: Int): List<Word> {
+fun <E : Comparable<E>> List<E>.selectionSort(quantity: Int): List<E> {
     select(quantity)
     return take(quantity)
 }
 
-private fun List<Word>.select(quantity: Int): Word {
+private fun <E : Comparable<E>> List<E>.select(quantity: Int): E {
     (0 until quantity).forEach { i ->
         var maxIndex: Int
         var maxValue = this[i]
