@@ -36,10 +36,14 @@ class Test {
         val commonChars = CharArray(commonCharsSize) { random.nextAZChar() }
         val textSB = StringBuilder()
         (0 until STRINGS_SIZE).forEach {
-            textSB.append(commonChars)
+            val stringSB = StringBuilder()
+            stringSB.append(commonChars)
             (0 until stringSize).forEach {
-                textSB.append(random.nextAZChar())
+                stringSB.append(random.nextAZChar())
             }
+            val chars = stringSB.toString().toList()
+            Collections.shuffle(chars)
+            chars.forEach { textSB.append(it) }
             textSB.appendln()
         }
         val actualCommonChars = findCommonChars(textSB.toString().trim())
