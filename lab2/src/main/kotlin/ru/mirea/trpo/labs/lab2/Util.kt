@@ -53,13 +53,10 @@ fun <E : Comparable<E>> List<E>.getMostFrequent(quantity: Int): List<E> {
     return queue.toList()
 }
 
-fun <E : Comparable<E>> List<E>.quickSelectPartitionIterativeSort(quantity: Int): List<E> {
-    selectIterative(quantity - 1)
-    return take(quantity)
-}
 
-fun <E : Comparable<E>> List<E>.quickSelectPartitionRecursiveSort(quantity: Int): List<E> {
-    selectRecursive(0, size - 1, quantity - 1)
+
+fun <E : Comparable<E>> List<E>.quickSelectPartitionSort(quantity: Int): List<E> {
+    quickSelect(quantity - 1)
     return take(quantity)
 }
 
@@ -68,7 +65,7 @@ fun <E : Comparable<E>> List<E>.selectionSort(quantity: Int): List<E> {
     return take(quantity)
 }
 
-private fun <E : Comparable<E>> List<E>.selectIterative(quantity: Int): E {
+private fun <E : Comparable<E>> List<E>.quickSelect(quantity: Int): E {
     var left = 0
     var right = size - 1
     val random = Random()
@@ -84,20 +81,6 @@ private fun <E : Comparable<E>> List<E>.selectIterative(quantity: Int): E {
         else
             left = pivot + 1
     }
-}
-
-private fun <E : Comparable<E>> List<E>.selectRecursive(left: Int, right: Int, quantity: Int): E {
-    val random = Random()
-    if (left == right)
-        return this[left]
-    var pivot = random.nextInt(right - left + 1) + left
-    pivot = partition(left, right, pivot)
-    if (quantity == pivot)
-        return this[quantity]
-    else if (quantity < pivot)
-        return selectRecursive(left, pivot - 1, quantity)
-    else
-        return selectRecursive(pivot + 1, right, quantity)
 }
 
 private fun <E : Comparable<E>> List<E>.partition(left: Int, right: Int, pivot: Int): Int {
