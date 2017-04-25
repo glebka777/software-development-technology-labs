@@ -28,7 +28,8 @@ class Test(val algorithm: (List<Word>, Int) -> List<String>) {
                 ::getMostFrequentByQueue,
                 ::getMostFrequentByJavaSort,
                 ::getMostFrequentByPartialSelectionSort,
-                ::getMostFrequentByQuickSelectPartitionSort
+                ::getMostFrequentByQuickSelectPartitionSort,
+                ::getMostFrequentByMedianOfMediansSort
         )
     }
 
