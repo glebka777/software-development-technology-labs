@@ -16,7 +16,7 @@ public class Main {
         params.add("current_speed");
         params.add("temperature");
         params.add("salinity");
-        System.out.println(new JsonSensorDataParser(file).parse());
+        System.out.println(new JsonSensorDataParser(file, params).parse());
         file.deleteOnExit();
     }
 
